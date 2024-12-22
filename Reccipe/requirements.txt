@@ -7,3 +7,4 @@ somepackage==1.2.3
 sqlparse==0.5.3
 tzdata==2024.2
 wheel==0.45.1
+
