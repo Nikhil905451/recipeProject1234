@@ -8,7 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required(login_url='/login/')
+@login_required(login_url='/{% url 'login' %}/')
 def recipes(request):
     if request.method == "POST":
         data = request.POST
@@ -40,7 +40,7 @@ def recipes(request):
 def delete_recipe(request,id):
     queryset = Recepie.objects.get(id = id)
     queryset.delete()
-    return redirect('/recipes/')
+    return redirect('/{% url 'recipe' %}/')
 
 def update_recipe(request,id):
     queryset = Recepie.objects.get(id = id)
@@ -58,7 +58,7 @@ def update_recipe(request,id):
         if recipe_image:
             queryset.recipe_image = recipe_image
         queryset.save()
-        return redirect('/recipes/')
+        return redirect('/{% url 'recipe' %}/')
 
     return render(request, "update_recipe.html", context)
 
@@ -76,15 +76,15 @@ def login_page(request):
 
         if not User.objects.filter(username = username).exists():  # it's return boolean expresion 'exists'
             messages.info(request, 'Invalid Username')
-            return redirect('/login/')
+            return redirect('/{% url 'login' %}/')
 
         user = authenticate(username = username , password = password)
         if user is None:
             messages.info(request, 'Invalid Password')
-            return redirect('/login/')
+            return redirect('/{% url 'login' %}/')
         else:
             login(request, user)
-            return redirect('/recipes/')
+            return redirect('/{% url 'recipe' %}/')
 
 
 
@@ -96,7 +96,7 @@ def login_page(request):
 
 def logout_page(request):
     logout(request)
-    return redirect('/login/')
+    return redirect('/{% url 'login' %}/')
 
 import re
 from django.contrib import messages
@@ -151,6 +151,6 @@ def register_page(request):
         # Add success message
         messages.success(request, 'Registered successfully!')
 
-        return redirect('/register/')
+        return redirect('/{% url 'register' %}/')
 
     return render(request, 'register.html')
