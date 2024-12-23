@@ -84,7 +84,7 @@ def login_page(request):
             return redirect('/login/')
         else:
             login(request, user)
-            return redirect('/recipes/')
+            return redirect('/recipe/')
 
 
 
