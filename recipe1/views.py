@@ -40,7 +40,7 @@ def recipes(request):
 def delete_recipe(request,id):
     queryset = Recepie.objects.get(id = id)
     queryset.delete()
-    return redirect('/recipes/')
+    return redirect('/recipe/')
 
 def update_recipe(request,id):
     queryset = Recepie.objects.get(id = id)
@@ -58,7 +58,7 @@ def update_recipe(request,id):
         if recipe_image:
             queryset.recipe_image = recipe_image
         queryset.save()
-        return redirect('/recipes/')
+        return redirect('/recipe/')
 
     return render(request, "update_recipe.html", context)
 
