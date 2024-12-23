@@ -53,17 +53,20 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'Reccipe.urls'
 
+# settings.py
+
 TEMPLATES = [
     {
-        'BACKEND': 'django.templates.backends.django.DjangoTemplates',
-        'DIRS': ['recipe1/templates'],
+        'BACKEND': 'django.template.backends.django.DjangoTemplates',
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
-                'django.templates.context_processors.debug',
-                'django.templates.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
+                # Default context processors...
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                # Add your custom context processor here
+                'myapp.context_processors.show_recipes',
             ],
         },
     },
