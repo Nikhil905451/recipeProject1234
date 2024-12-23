@@ -1,5 +1,5 @@
 from django.urls import path
-import views
+from Reccipe.recipe1 import views
 
 urlpatterns = [
     path('index/', views.index),
